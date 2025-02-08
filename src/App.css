@@ -1,0 +1,101 @@
+/* 전체 페이지 배경 설정 (검정색 우주 느낌) */
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;  /* 깊은 우주 검정색 */
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;  /* 미래적인 폰트 */
+    color: #fff;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* 별 애니메이션 효과 (더 많은 별 추가) */
+  .stars {
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow: 
+      50vw 50vh #FFF,
+      10vw 20vh #FFF,
+      30vw 70vh #FFF,
+      80vw 30vh #FFF,
+      90vw 80vh #FFF,
+      20vw 50vh #FFF,
+      70vw 60vh #FFF,
+      60vw 10vh #FFF,
+      40vw 90vh #FFF,
+      15vw 40vh #FFF,
+      85vw 75vh #FFF,
+      25vw 85vh #FFF,
+      95vw 15vh #FFF,
+      5vw 95vh #FFF,
+      55vw 5vh #FFF,
+      35vw 55vh #FFF,
+      75vw 25vh #FFF,
+      45vw 65vh #FFF,
+      12vw 88vh #FFF,
+      88vw 12vh #FFF,
+      50vw 10vh #FFF,
+      10vw 50vh #FFF,
+      90vw 90vh #FFF;
+    animation: animateStars 100s linear infinite;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  /* 별 반짝이는 애니메이션 */
+  @keyframes animateStars {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-1000px);  /* 별이 천천히 위로 움직이는 효과 */
+    }
+  }
+  
+  /* 헤더 스타일 */
+  .App-header {
+    position: relative;
+    z-index: 1;  /* 별보다 앞에 위치 */
+    padding: 20px;
+  }
+  
+  /* 버튼 디자인 (Glassmorphism 효과) */
+  .launch-button {
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .launch-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Launch 버튼 클릭 시 발사 애니메이션 */
+  .App.launched .App-header {
+    animation: launchMove 2s ease-in-out forwards;
+  }
+  
+  @keyframes launchMove {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-500px);  /* 우주로 발사하는 느낌 */
+      opacity: 0;  /* 점점 사라지게 */
+    }
+  }
+  
