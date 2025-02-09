@@ -19,14 +19,12 @@ function App() {
   useEffect(() => {
     if (launched) {
       const interval = setInterval(() => {
-        // 가격 범위를 0.0001 ~ 0.01로 설정
         const minPrice = 0.0001;
         const maxPrice = 0.01;
         const newPrice = +(Math.random() * (maxPrice - minPrice) + minPrice).toFixed(5);
         
         setPrice(newPrice);
 
-        // 항성 매칭 로직 수정
         const currentPlanet = planets
           .slice()
           .reverse()
@@ -38,7 +36,6 @@ function App() {
     }
   }, [launched]);
 
-  // 우주선 위치 계산
   const rocketPosition = Math.min(Math.max(((price - 0.0001) / (0.01 - 0.0001)) * 60 + 20, 20), 80);
 
   return (
@@ -51,6 +48,25 @@ function App() {
           <button className="launch-button" onClick={() => setLaunched(true)}>
             Launch Now
           </button>
+
+          {/* 👇 About Section */}
+          <div className="about-section">
+            <h2>Welcome to Interstellar Coin 🌌</h2>
+            <p>
+              Interstellar Coin isn't just a meme coin—it's your ticket to the stars! 🚀 <br /><br />
+              Start your journey from <strong>Earth</strong>, pass through the <strong>Solar System Edge</strong>, explore <strong>Alpha Centauri</strong>, 
+              navigate the <strong>Milky Way</strong>, fly beyond <strong>Andromeda</strong>, cross the <strong>Intergalactic Space</strong>, and finally, 
+              reach the <strong>Edge of the Universe</strong>! ✨<br /><br />
+              As the price rises, your rocket ventures deeper into the cosmos. If it falls, you'll safely return to Earth. 🌍 <br /><br />
+              Ready to conquer the universe? Join us now! 🚀
+            </p>
+
+            {/* 👇 Call to Action Button */}
+            <a href="https://pump.fun" className="join-button" target="_blank" rel="noopener noreferrer">
+              Buy Interstellar Coin 🌌
+            </a>
+          </div>
+
         </header>
       ) : (
         <div>
@@ -76,4 +92,3 @@ function App() {
 }
 
 export default App;
-
