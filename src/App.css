@@ -194,3 +194,7 @@ body {
   left: 10%;
   right: 10%;
 }
+
+html {
+  scroll-behavior: smooth;  /* 스크롤이 부드럽게 움직이도록 설정 */
+}
