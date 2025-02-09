@@ -1,101 +1,129 @@
 /* 전체 페이지 배경 설정 (검정색 우주 느낌) */
 body {
-    margin: 0;
-    padding: 0;
-    background: #000;  /* 깊은 우주 검정색 */
-    overflow: hidden;
-    font-family: 'Orbitron', sans-serif;  /* 미래적인 폰트 */
-    color: #fff;
-    text-align: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 별 애니메이션 효과 (더 많은 별 추가) */
+.stars {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 
+    50vw 50vh #FFF,
+    10vw 20vh #FFF,
+    30vw 70vh #FFF,
+    80vw 30vh #FFF,
+    90vw 80vh #FFF,
+    20vw 50vh #FFF,
+    70vw 60vh #FFF,
+    60vw 10vh #FFF,
+    40vw 90vh #FFF,
+    15vw 40vh #FFF,
+    85vw 75vh #FFF,
+    25vw 85vh #FFF,
+    95vw 15vh #FFF,
+    5vw 95vh #FFF,
+    55vw 5vh #FFF,
+    35vw 55vh #FFF,
+    75vw 25vh #FFF,
+    45vw 65vh #FFF;
+  animation: animateStars 100s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* 별 반짝이는 애니메이션 */
+@keyframes animateStars {
+  from {
+    transform: translateY(0px);
   }
-  
-  /* 별 애니메이션 효과 (더 많은 별 추가) */
-  .stars {
-    width: 2px;
-    height: 2px;
-    background: transparent;
-    box-shadow: 
-      50vw 50vh #FFF,
-      10vw 20vh #FFF,
-      30vw 70vh #FFF,
-      80vw 30vh #FFF,
-      90vw 80vh #FFF,
-      20vw 50vh #FFF,
-      70vw 60vh #FFF,
-      60vw 10vh #FFF,
-      40vw 90vh #FFF,
-      15vw 40vh #FFF,
-      85vw 75vh #FFF,
-      25vw 85vh #FFF,
-      95vw 15vh #FFF,
-      5vw 95vh #FFF,
-      55vw 5vh #FFF,
-      35vw 55vh #FFF,
-      75vw 25vh #FFF,
-      45vw 65vh #FFF,
-      12vw 88vh #FFF,
-      88vw 12vh #FFF,
-      50vw 10vh #FFF,
-      10vw 50vh #FFF,
-      90vw 90vh #FFF;
-    animation: animateStars 100s linear infinite;
-    position: absolute;
-    top: 0;
-    left: 0;
+  to {
+    transform: translateY(-1000px);  /* 별이 천천히 위로 움직임 */
   }
-  
-  /* 별 반짝이는 애니메이션 */
-  @keyframes animateStars {
-    from {
-      transform: translateY(0px);
-    }
-    to {
-      transform: translateY(-1000px);  /* 별이 천천히 위로 움직이는 효과 */
-    }
+}
+
+/* 헤더 스타일 */
+.App-header {
+  position: relative;
+  z-index: 1;  /* 별보다 앞에 위치 */
+  padding: 20px;
+}
+
+/* Launch 버튼 클릭 시 텍스트와 버튼 발사 애니메이션 */
+.App.launched .App-header {
+  animation: launchMove 4s ease-in-out forwards;  /* 4초 동안 위로 이동 */
+}
+
+@keyframes launchMove {
+  from {
+    transform: translateY(0);
   }
-  
-  /* 헤더 스타일 */
-  .App-header {
-    position: relative;
-    z-index: 1;  /* 별보다 앞에 위치 */
-    padding: 20px;
+  to {
+    transform: translateY(-100vh);  /* 화면 위로 사라지게 함 */
+    opacity: 0;  /* 점점 투명해짐 */
   }
-  
-  /* 버튼 디자인 (Glassmorphism 효과) */
-  .launch-button {
-    padding: 15px 30px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    color: #fff;
-    font-size: 1.2rem;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition: 0.3s ease;
-    margin-top: 20px;
-  }
-  
-  .launch-button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-  }
-  
-  /* Launch 버튼 클릭 시 발사 애니메이션 */
-  .App.launched .App-header {
-    animation: launchMove 2s ease-in-out forwards;
-  }
-  
-  @keyframes launchMove {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-500px);  /* 우주로 발사하는 느낌 */
-      opacity: 0;  /* 점점 사라지게 */
-    }
-  }
-  
+}
+
+/* 버튼 스타일 (Glassmorphism 효과) */
+.launch-button {
+  padding: 15px 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+  margin-top: 20px;
+}
+
+.launch-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* 행성 이름 위치 조정 */
+.planets {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 40%;
+  left: 20%;   /* 우주선 시작 위치와 맞춤 */
+  right: 20%;  /* 우주선 끝 위치와 맞춤 */
+}
+
+.planet {
+  font-size: 1rem;
+  color: #fff;
+}
+
+/* 우주선 위치 조정 */
+.rocket {
+  position: absolute;
+  top: 45%;  /* 행성 이름 바로 아래에 위치 */
+  font-size: 2rem;  
+  transition: left 1s ease-in-out;
+}
+
+/* 가격 정보 위치 */
+.price-info {
+  position: absolute;
+  bottom: 30%;  /* 문장을 좀 더 위로 올림 */
+  left: 50%;   /* 화면 가로 중앙에 위치 */
+  transform: translateX(-50%);  /* 정확히 중앙 정렬 */
+  color: #FFD700;
+  font-size: 1.5rem;  /* 폰트 크기 키움 */
+  text-align: center;  /* 텍스트 중앙 정렬 */
+}

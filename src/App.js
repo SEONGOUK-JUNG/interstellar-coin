@@ -1,34 +1,79 @@
-// React와 useState를 한 번만 불러오기
-import React, { useState } from "react";
-import "./App.css";  // 스타일 파일 불러오기
+import React, { useState, useEffect } from "react";
+import "./App.css";
+
+const planets = [
+    { name: "Earth", price: 0.0001 },
+    { name: "Solar System Edge", price: 0.002 },
+    { name: "Alpha Centauri", price: 0.004 },
+    { name: "Milky Way", price: 0.006 },
+    { name: "Andromeda", price: 0.008 },
+    { name: "Intergalactic Space", price: 0.009 },
+    { name: "Edge of the Universe", price: 0.01 }
+];
 
 function App() {
-  const [launched, setLaunched] = useState(false);  // 발사 상태 관리
+  const [launched, setLaunched] = useState(false);
+  const [price, setPrice] = useState(0);
+  const [planet, setPlanet] = useState(planets[0]);
 
-  const handleLaunch = () => {
-    setLaunched(true);  // 버튼 클릭 시 발사 상태로 변경
-  };
+  useEffect(() => {
+    if (launched) {
+      const interval = setInterval(() => {
+        // 가격 범위를 0.0001 ~ 0.01로 설정
+        const minPrice = 0.0001;
+        const maxPrice = 0.01;
+        const newPrice = +(Math.random() * (maxPrice - minPrice) + minPrice).toFixed(5);
+        
+        setPrice(newPrice);
+
+        // 항성 매칭 로직 수정
+        const currentPlanet = planets
+          .slice()
+          .reverse()
+          .find(p => newPrice >= p.price) || planets[0];
+        
+        setPlanet(currentPlanet);
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [launched]);
+
+  // 우주선 위치 계산
+  const rocketPosition = Math.min(Math.max(((price - 0.0001) / (0.01 - 0.0001)) * 60 + 20, 20), 80);
 
   return (
-    <div className={`App ${launched ? "launched" : ""}`}>  {/* 발사 상태에 따라 클래스 변경 */}
-
-      {/* 별 애니메이션 */}
+    <div className={`App ${launched ? "launched" : ""}`}>
       <div className="stars"></div>
-      <div className="stars"></div>
-      <div className="stars"></div>  {/* 별 밀도 추가 */}
-
-      {/* 헤더 섹션 */}
-      <header className="App-header">
-        <h1>Interstellar Coin 🚀</h1>
-        <p>{launched ? "Launching into space!" : "Are you ready to conquer the universe?"}</p>
-
-        {/* Launch Now 버튼 */}
-        <button className="launch-button" onClick={handleLaunch}>
-          {launched ? "Launched!" : "Launch Now"}
-        </button>
-      </header>
+      {!launched ? (
+        <header className="App-header">
+          <h1>Interstellar Coin 🚀</h1>
+          <p>Are you ready to conquer the universe?</p>
+          <button className="launch-button" onClick={() => setLaunched(true)}>
+            Launch Now
+          </button>
+        </header>
+      ) : (
+        <div>
+          <div className="planets">
+            {planets.map((p) => (
+              <span key={p.name} className="planet">{p.name}</span>
+            ))}
+          </div>
+          <div
+            className="rocket"
+            style={{ left: `${rocketPosition}%` }}
+          >
+            🚀
+          </div>
+          <div className="price-info">
+            <p>Current Price: ${price}</p>
+            <p>🚀 Currently at: {planet.name}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 export default App;
+
