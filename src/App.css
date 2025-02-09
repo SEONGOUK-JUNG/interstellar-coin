@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background: #000;
-  overflow: hidden;
+  overflow: auto;
   font-family: 'Orbitron', sans-serif;
   color: #fff;
   text-align: center;
@@ -159,4 +159,38 @@ body {
 .join-button:hover {
   background: rgba(0, 123, 255, 1);  /* 호버 시 더 진한 파란색 */
   box-shadow: 0 0 15px rgba(0, 123, 255, 0.7);  /* 호버 시 빛나는 효과 */
+}
+
+/* 모바일 화면 대응 (최대 너비 768px) */
+@media (max-width: 768px) {
+  .planet {
+    font-size: 0.8rem;  /* 행성 글자 크기 줄임 */
+  }
+
+  .rocket {
+    font-size: 1.5rem;  /* 우주선 크기 줄임 */
+    top: 60%;           /* 우주선 위치 조금 내려줌 */
+  }
+
+  .price-info {
+    font-size: 1rem;    /* 가격 정보 글자 크기 줄임 */
+    bottom: 20%;        /* 가격 정보 위치 조정 */
+  }
+
+  .about-section h2 {
+    font-size: 1.5rem;  /* 소개 섹션 제목 크기 줄임 */
+  }
+
+  .about-section p {
+    font-size: 0.9rem;  /* 소개 섹션 본문 크기 줄임 */
+  }
+}
+
+.planets {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 30%;   /* 모바일에서도 잘 보이도록 위치 조정 */
+  left: 10%;
+  right: 10%;
 }
