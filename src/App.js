@@ -74,7 +74,7 @@ function App() {
             </p>
 
             {/* Call to Action Button */}
-            <a href="https://pump.fun" className="join-button" target="_blank" rel="noopener noreferrer">
+            <a href="https://pump.fun/coin/8pn7vZJF5kYetg6zaSBsRA59NDnqYdpDwREFNUWkpump?coins_sort=market_cap" className="join-button" target="_blank" rel="noopener noreferrer">
               Buy Interstellar Coin 🌌
             </a>
           </div>
